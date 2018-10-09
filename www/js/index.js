@@ -58,16 +58,28 @@ var app = {
         }
     },
 
+    data: [
+        {
+            NUMBER: '159271252003',
+            TYPE: '拨出',
+            DURATION: '100s'
+        }
+    ],
+
     displayCalllog: function() {
         var _displayCalllog = function () {
             window.plugins.callLog.getCallLog([ ], function(data) {
-                alert(data)
-                $('.calllog-list').html(data[0].DURATION)
+               var callLogList = $('<ul></ul>') 
+               data.forEach(function(callLog) {
+                   var callLogItem = $('<li></li>')
+                   callLogItem.text(callLog.NUMBER).appendTo(callLogList)
+               })
+               $('.calllog-list').append(callLogList)
             }, function() {
                 alert('获取通话记录失败！')
             })
         }
-        
+
         window.plugins.callLog.hasReadPermission(_displayCalllog,
         // 若没有权限则请求
         function() {
