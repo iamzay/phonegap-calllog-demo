@@ -38,12 +38,11 @@ var app = {
             return
         }
 
-        alert('number: ' + number)
         window.plugins.CallNumber.callNumber(function(result) {
             app.displayCalllog()
-        }, number, function (result) {
+        }, function (result) {
             alert("Error:" + result)
-        })
+        }, number)
     },
     // deviceready Event Handler
     //
@@ -51,7 +50,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        app.displayCalllog();
+        setTimeout(app.displayCalllog, 1000)
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
