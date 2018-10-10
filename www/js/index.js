@@ -69,13 +69,24 @@ var app = {
     displayCalllog: function() {
         var _displayCalllog = function () {
             window.plugins.callLog.getCallLog([ ], function(data) {
-               alert(JSON.stringify(data))
-               var callLogList = $('<ul></ul>') 
-               data.forEach(function(callLog) {
-                   var callLogItem = $('<li></li>')
-                   callLogItem.text(callLog.number).appendTo(callLogList)
-               })
-               $('.calllog-list').append(callLogList)
+                var tableStr = '<table>' + 
+                               '<tr><td>通话时间</td><td class="call-time"></td></tr>' + 
+                               '<tr><td>通话时长</td><td class="call-duration"></td></tr>' +
+                               '<tr><td>通话类型</td><td class="call-type"></td></tr>' + 
+                               '<tr><td>姓名</td><td class="call-name"></td></tr>' + 
+                               '</table>'
+                var callLogList = $('<ul></ul>')
+                var callTypes = ['呼入','呼出','未接通']
+                data.forEach(function (callLog) {
+                    var callLogItem = $('<li></li>')
+                    var callLogTable = $(tableStr).appendTo(callLogItem)
+                    callLogTable.find('.call-time').text((new Date(callLog.date)).toLocaleString())
+                    callLogTable.find('.call-duration').text(callLog.duration + 's')
+                    callLogTable.find('.call-type').text(callTypes[callLog.type])
+                    callLogTable.find('.call-name').text(callLog.name || '佚名')
+                    callLogTable.appendTo(callLogList)
+                })
+                $('.calllog-list').append(callLogList)
             }, function() {
                 alert('获取通话记录失败！')
             })
