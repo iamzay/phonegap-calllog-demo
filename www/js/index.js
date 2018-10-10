@@ -28,10 +28,11 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
 
-        $('.call-number button').click(app.onButtonClick)
+        $('.dial-button').click(app.onDialButtonClick)
+        $('.update-button').click(app.displayCalllog)
     },
 
-    onButtonClick: function() {
+    onDialButtonClick: function() {
         var number = $('.call-number input').val().trim()
         if(!(/^\d{11}$/.test(number))) {
             alert('您输入的电话号码不合法!')
@@ -50,7 +51,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        setInterval(app.displayCalllog, 1000)
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
