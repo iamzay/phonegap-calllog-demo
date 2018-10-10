@@ -82,7 +82,7 @@ var app = {
                     var callLogTable = $(tableStr).appendTo(callLogItem)
                     callLogTable.find('.call-time').text((new Date(callLog.date)).toLocaleString())
                     callLogTable.find('.call-duration').text(callLog.duration + 's')
-                    callLogTable.find('.call-type').text(callTypes[callLog.type])
+                    callLogTable.find('.call-type').text(callTypes[callLog.type - 1])
                     callLogTable.find('.call-name').text(callLog.name || '佚名')
                     callLogTable.appendTo(callLogList)
                 })
