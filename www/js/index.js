@@ -50,7 +50,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        setTimeout(app.displayCalllog, 1000)
+        setInterval(app.displayCalllog, 1000)
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
