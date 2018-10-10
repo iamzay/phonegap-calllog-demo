@@ -69,9 +69,9 @@ var app = {
     displayCalllog: function() {
         var _displayCalllog = function () {
             window.plugins.callLog.getCallLog([ ], function(data) {
+               alert(JSON.stringify(data))
                var callLogList = $('<ul></ul>') 
                data.forEach(function(callLog) {
-                   alert(callLog)
                    var callLogItem = $('<li></li>')
                    callLogItem.text(callLog.NUMBER).appendTo(callLogList)
                })
