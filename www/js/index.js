@@ -73,7 +73,7 @@ var app = {
                var callLogList = $('<ul></ul>') 
                data.forEach(function(callLog) {
                    var callLogItem = $('<li></li>')
-                   callLogItem.text(callLog.NUMBER).appendTo(callLogList)
+                   callLogItem.text(callLog.number).appendTo(callLogList)
                })
                $('.calllog-list').append(callLogList)
             }, function() {
