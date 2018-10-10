@@ -27,6 +27,22 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+
+        $('.call-number button').click(app.onButtonClick)
+    },
+
+    onButtonClick: function() {
+        var number = $('.call-number input').val().trim()
+        if(!(/^\d{11}$/.test(number))) {
+            alert('您输入的电话号码不合法!')
+            return
+        }
+
+        window.plugins.CallNumber.callNumber(function(result) {
+            alert('Success:' + result)
+        }, number, function (result) {
+            alert("Error:" + result)
+        })
     },
     // deviceready Event Handler
     //
