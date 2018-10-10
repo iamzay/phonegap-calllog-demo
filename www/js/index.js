@@ -38,6 +38,7 @@ var app = {
             return
         }
 
+        alert('number: ' + number)
         window.plugins.CallNumber.callNumber(function(result) {
             app.displayCalllog()
         }, number, function (result) {
