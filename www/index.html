@@ -49,9 +49,21 @@
             <p class="event received">Device is Ready</p>
         </div>
         <div class="call-number" style="margin: 10px;">
-            <input type="tel" id="phone" name="phone" placeholder="输入电话号码"/>
+            <input type="tel" id="phone" name="phone" placeholder="输入电话号码" />
             <button class="dial-button">拨打</button>
             <button class="update-button">加载记录</button>
+        </div>
+        <div class="filter-setting">
+            <table>
+                <tr>
+                    <td><label for="filter-time">时间</label></td>
+                    <td><input type="number" name="" id="filter-time">前</td>
+                </tr>
+                <tr>
+                    <td><label for="filter-number">电话</label></td>
+                    <td><input type="number" name="" id="filter-number"></td>
+                </tr>
+            </table>
         </div>
         <div class="calllog-list">
         </div>

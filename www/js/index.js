@@ -74,17 +74,29 @@ var app = {
         }
     },
 
-    data: [
-        {
-            NUMBER: '159271252003',
-            TYPE: '拨出',
-            DURATION: '100s'
-        }
-    ],
-
     displayCalllog: function() {
         var _displayCalllog = function () {
-            window.plugins.callLog.getCallLog([ ], function(data) {
+            var filters = []
+            var time = $('#filter-time').val().trim()
+            time = parseInt(time)
+            var number = $('#filter-number').val().trim()
+            if(time) {
+                var date = new Date()
+                date.setDate(date.getDate() - time)
+                filters.push({
+                    name: 'date',
+                    value: date.getTime(),
+                    operator: '>='
+                })
+            }
+            if(number) {
+                filters.push({
+                    name: 'number',
+                    value: number,
+                    operator: '=='
+                })
+            }
+            window.plugins.callLog.getCallLog(filters, function(data) {
                 var tableStr = '<table>' + 
                                '<tr><td>电话号码</td><td class="call-number"></td></tr>' + 
                                '<tr><td>通话时间</td><td class="call-time"></td></tr>' + 
