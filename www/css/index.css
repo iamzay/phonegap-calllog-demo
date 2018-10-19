@@ -79,3 +79,7 @@ body {
 table {
     margin-bottom: 10px;
 }
+
+.call-timestamp, #latest-timestamp {
+    color: purple;
+}

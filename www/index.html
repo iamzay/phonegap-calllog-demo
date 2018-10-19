@@ -54,16 +54,31 @@
             <button class="update-button">加载记录</button>
         </div>
         <div class="filter-setting">
+            <p>过滤条件</p>
             <table>
                 <tr>
                     <td><label for="filter-time">时间</label></td>
-                    <td><input type="number" name="" id="filter-time">前</td>
+                    <td><input type="number" name="" id="filter-time">天内</td>
                 </tr>
                 <tr>
                     <td><label for="filter-number">电话</label></td>
                     <td><input type="number" name="" id="filter-number"></td>
                 </tr>
             </table>
+        </div>
+        <div id="latest-info">
+            <div>
+                <span>最近一次时间戳：</span>
+                <span id="latest-timestamp"></span>
+            </div> 
+            <div>
+                <span>最近一次日期：</span>
+                <span id="latest-date"></span>
+            </div>
+            <div>
+                <span>拨号回调res：</span>
+                <span id="callnumber-res"></span>
+            </div>
         </div>
         <div class="calllog-list">
         </div>

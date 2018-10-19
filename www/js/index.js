@@ -40,7 +40,10 @@ var app = {
         }
 
         window.plugins.CallNumber.callNumber(function(result) {
-            app.displayCalllog()
+            var date = new Date()
+            $('#latest-timestamp').text(date.getTime())
+            $('#latest-date').text(date)
+            $('#callnumber-res').text(result)
         }, function (result) {
             alert("Error:" + result)
         }, number)
@@ -100,6 +103,7 @@ var app = {
                 var tableStr = '<table>' + 
                                '<tr><td>电话号码</td><td class="call-number"></td></tr>' + 
                                '<tr><td>通话时间</td><td class="call-time"></td></tr>' + 
+                               '<tr><td>时间戳</td><td class="call-timestamp"></td></tr>' +
                                '<tr><td>通话时长</td><td class="call-duration"></td></tr>' +
                                '<tr><td>通话类型</td><td class="call-type"></td></tr>' + 
                                '<tr><td>姓名</td><td class="call-name"></td></tr>' + 
@@ -111,6 +115,7 @@ var app = {
                     var callLogTable = $(tableStr).appendTo(callLogItem)
                     callLogTable.find('.call-number').text(callLog.number)
                     callLogTable.find('.call-time').text((new Date(callLog.date)).toLocaleString())
+                    callLogTable.find('.call-timestamp').text(callLog.date)
                     callLogTable.find('.call-duration').text(callLog.duration + 's')
                     callLogTable.find('.call-type').text(callTypes[callLog.type - 1])
                     callLogTable.find('.call-name').text(callLog.name || '佚名')
