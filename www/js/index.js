@@ -27,15 +27,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener("pause", app.onPause, false);
         document.addEventListener('resume', app.onResume, false);
 
         $('.dial-button').click(app.onDialButtonClick)
         $('.update-button').click(app.displayCalllog)
-    },
-
-    onPause: function() {
-        alert('我要走了')
     },
 
     onResume: function() {
@@ -48,7 +43,9 @@ var app = {
             operator: '>='
         })
         window.plugins.callLog.getCallLog(filters, function(data) {
-            $('.last-calllog').text(data[0].date)
+            var callLog = data[0]
+            $('.last-calllog-timestamp').text(callLog.date)
+            $('.last-calllog-date').text((new Date(callLog.date)).toString())
         }, function() {
             alert('获取通话记录失败!')
         }) 
