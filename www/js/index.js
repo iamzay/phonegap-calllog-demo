@@ -27,9 +27,23 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener("pause", app.onPause, false);
+        document.addEventListener('resume', app.onResume, false);
 
         $('.dial-button').click(app.onDialButtonClick)
         $('.update-button').click(app.displayCalllog)
+    },
+
+    onPause: function() {
+        alert('我要走了')
+    },
+
+    onResume: function() {
+        window.plugins.callLog.getCallLog(filters, function(data) {
+            $('last-calllog').text(data[0].date)
+        }, function() {
+            alert('获取通话记录失败!')
+        }) 
     },
 
     onDialButtonClick: function() {
