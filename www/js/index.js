@@ -48,7 +48,7 @@ var app = {
             operator: '>='
         })
         window.plugins.callLog.getCallLog(filters, function(data) {
-            $('last-calllog').text(data[0].date)
+            $('.last-calllog').text(data[0].date)
         }, function() {
             alert('获取通话记录失败!')
         }) 
