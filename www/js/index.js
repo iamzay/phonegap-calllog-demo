@@ -39,6 +39,14 @@ var app = {
     },
 
     onResume: function() {
+        var filters = []
+        var date = new Date()
+        date.setDate(date.getDate() - 1)
+        filters.push({
+            name: 'date',
+            value: date.getTime(),
+            operator: '>='
+        })
         window.plugins.callLog.getCallLog(filters, function(data) {
             $('last-calllog').text(data[0].date)
         }, function() {
